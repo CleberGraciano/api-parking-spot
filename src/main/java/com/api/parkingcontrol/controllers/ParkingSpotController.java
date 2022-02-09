@@ -76,23 +76,22 @@ public class ParkingSpotController {
         if (!parkingSpotModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not Found.");
         }
-        var parkingSpotModel = parkingSpotModelOptional.get();
-        parkingSpotModel.setParkingSpotNumber(parkingSpotDto.getParkingSpotNumber());
-        parkingSpotModel.setModelCar(parkingSpotDto.getModelCar());
-        parkingSpotModel.setApartment(parkingSpotDto.getApartment());
-        parkingSpotModel.setLicencePlateCar(parkingSpotDto.getLicencePlateCar());
-        parkingSpotModel.setBrandCar(parkingSpotDto.getBrandCar());
-        parkingSpotModel.setBlock(parkingSpotDto.getBlock());
-        parkingSpotModel.setColorCar(parkingSpotDto.getColorCar());
-        parkingSpotModel.setResponsibleName(parkingSpotDto.getResponsibleName());
 
-        //Outra Maneira
+//        var parkingSpotModel = parkingSpotModelOptional.get();
+//        parkingSpotModel.setParkingSpotNumber(parkingSpotDto.getParkingSpotNumber());
+//        parkingSpotModel.setModelCar(parkingSpotDto.getModelCar());
+//        parkingSpotModel.setApartment(parkingSpotDto.getApartment());
+//        parkingSpotModel.setLicencePlateCar(parkingSpotDto.getLicencePlateCar());
+//        parkingSpotModel.setBrandCar(parkingSpotDto.getBrandCar());
+//        parkingSpotModel.setBlock(parkingSpotDto.getBlock());
+//        parkingSpotModel.setColorCar(parkingSpotDto.getColorCar());
+//        parkingSpotModel.setResponsibleName(parkingSpotDto.getResponsibleName());
 
-//        var parkingSpotModel = new ParkingSpotModel();
+        var parkingSpotModel = new ParkingSpotModel();
 
-//        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
-//        parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
-//        parkingSpotModel.setRegistrationDate(parkingSpotModelOptional.get().getRegistrationDate());
+        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
+        parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
+        parkingSpotModel.setRegistrationDate(parkingSpotModelOptional.get().getRegistrationDate());
         return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.saveParking(parkingSpotModel));
 
     }
