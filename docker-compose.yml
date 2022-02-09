@@ -1,0 +1,10 @@
+version: "3"
+services:
+  pg-parking-control:
+    container_name: pg-parking-control
+    image: postgres:9.6
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_DB=parking
+      - POSTGRES_PASSWORD=password
