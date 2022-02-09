@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class ParkingSpotServiceImpl implements ParkingSpotService {
@@ -36,5 +37,10 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
     @Override
     public boolean existsByApartmentAndBlock(String apartment, String block) {
         return parkingSpotRepository.existsByApartmentAndBlock(apartment, block);
+    }
+
+    @Override
+    public List<ParkingSpotModel> findAll() {
+        return parkingSpotRepository.findAll();
     }
 }

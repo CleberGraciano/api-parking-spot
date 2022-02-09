@@ -2,6 +2,7 @@ package com.api.parkingcontrol.services;
 
 import com.api.parkingcontrol.models.ParkingSpotModel;
 
+import java.util.List;
 
 
 public interface ParkingSpotService {
@@ -14,4 +15,6 @@ public interface ParkingSpotService {
     boolean existsByParkingSpotNumber(String parkingSpotNumber);
 
     boolean existsByApartmentAndBlock(String apartment, String block);
+
+    List<ParkingSpotModel> findAll();
 }
