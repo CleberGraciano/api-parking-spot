@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.Beans;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -67,6 +68,33 @@ public class ParkingSpotController {
         }
         parkingSpotService.delete(parkingSpotModelOptional.get());
         return ResponseEntity.status(HttpStatus.OK).body("Parking Spot deleted successfully.");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateParkingSpot(@PathVariable(value = "id") UUID id, @RequestBody @Valid ParkingSpotDto parkingSpotDto) {
+        Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
+        if (!parkingSpotModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not Found.");
+        }
+        var parkingSpotModel = parkingSpotModelOptional.get();
+        parkingSpotModel.setParkingSpotNumber(parkingSpotDto.getParkingSpotNumber());
+        parkingSpotModel.setModelCar(parkingSpotDto.getModelCar());
+        parkingSpotModel.setApartment(parkingSpotDto.getApartment());
+        parkingSpotModel.setLicencePlateCar(parkingSpotDto.getLicencePlateCar());
+        parkingSpotModel.setBrandCar(parkingSpotDto.getBrandCar());
+        parkingSpotModel.setBlock(parkingSpotDto.getBlock());
+        parkingSpotModel.setColorCar(parkingSpotDto.getColorCar());
+        parkingSpotModel.setResponsibleName(parkingSpotDto.getResponsibleName());
+
+        //Outra Maneira
+
+//        var parkingSpotModel = new ParkingSpotModel();
+
+//        BeanUtils.copyProperties(parkingSpotDto, parkingSpotModel);
+//        parkingSpotModel.setId(parkingSpotModelOptional.get().getId());
+//        parkingSpotModel.setRegistrationDate(parkingSpotModelOptional.get().getRegistrationDate());
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.saveParking(parkingSpotModel));
+
     }
 
 

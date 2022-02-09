@@ -51,6 +51,7 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
         return parkingSpotRepository.findById(id);
     }
 
+    @Transactional
     @Override
     public void delete(ParkingSpotModel parkingSpotModel) {
         parkingSpotRepository.delete(parkingSpotModel);
