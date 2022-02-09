@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ParkingSpotServiceImpl implements ParkingSpotService {
@@ -42,5 +44,10 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
     @Override
     public List<ParkingSpotModel> findAll() {
         return parkingSpotRepository.findAll();
+    }
+
+    @Override
+    public Optional<ParkingSpotModel> findById(UUID id) {
+        return parkingSpotRepository.findById(id);
     }
 }
